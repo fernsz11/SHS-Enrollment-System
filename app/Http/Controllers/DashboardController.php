@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Students;
+use App\Models\students;
 use App\Models\Strand;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +10,7 @@ class DashboardController extends Controller
     public function index()
     {
         // Get counts for each strand
-        $strandCounts = Students::select('strands.Strand_Name', DB::raw('count(*) as total'))
+        $strandCounts = students::select('strands.Strand_Name', DB::raw('count(*) as total'))
             ->join('strands', 'students.StrandID', '=', 'strands.StrandID')
             ->groupBy('strands.Strand_Name')
             ->pluck('total', 'Strand_Name')
